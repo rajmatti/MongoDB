@@ -8,3 +8,6 @@ db.examples.find().limit(4);
 db.examples.find().limit(4).skip(1);
 
 db.examples.find().limit(4).skip(3);
+
+--sort 1 is used for ascending order sorting.-1 is used for descending order sorting.
+db.examples.find().sort({"qty":-1}) 
