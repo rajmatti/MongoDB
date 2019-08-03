@@ -1,0 +1,41 @@
+db.examples.insertOne(
+{ item: "c", qty: 100, tags: ["cotton"], size: { h: 30, w: 37.5, uom: "cm" } }
+)
+
+db.examples.find()
+
+db.examples.find( { item: "c" } )
+---------------------------------------
+db.examples.insertMany([
+{ item: "j", qty: 25, tags: ["blank", "white"], size: { h: 17, w: 28, uom: "cm" } },
+{ item: "mats", qty: 85, tags: ["blue"], size: { h: 29.9, w: 39.5, uom: "cm" } },
+{ item: "mouse", qty: 25, tags: ["gel", "grey"], size: { h: 27, w: 29.85, uom: "cm" } }
+])
+
+db.examples.insertMany([
+{ item: "j", qty: 25, size: { h: 18, w: 28, uom: "cm" }, status: "A" },
+{ item: "notebooks", qty: 50, size: { h: 9.5, w: 19, uom: "in" }, status: "A" },
+{ item: "papers", qty: 100, size: { h: 11.5, w: 11, uom: "in" }, status: "D" },
+{ item: "pl", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+{ item: "po", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+]);
+
+db.examples.find( {} )
+------------------------------
+
+--Specify Equality Condition
+db.examples.find( { status: "D" } )
+
+db.example.find( { status: { $in: [ "A", "D" ] } } )
+
+--Specify AND Condition
+db.examples.find( { status: "A", qty: { $lt: 30 } } )
+
+--Specify OR Condition
+db.examples.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
+
+--Specify AND as well as OR Condition
+db.examples.find( {
+status: "A",
+$or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+} )
