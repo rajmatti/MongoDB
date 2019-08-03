@@ -1,0 +1,10 @@
+--query without specifying the limit.
+db.examples.find()
+
+--query for the same collection after specifying the limit in MongoDB.
+db.examples.find().limit(4);
+
+--skipping some documents, we can use the Skip() method 
+db.examples.find().limit(4).skip(1);
+
+db.examples.find().limit(4).skip(3);
