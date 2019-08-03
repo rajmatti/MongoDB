@@ -28,6 +28,7 @@ db.examples.find( { status: "D" } )
 
 db.example.find( { status: { $in: [ "A", "D" ] } } )
 
+
 --Specify AND Condition
 db.examples.find( { status: "A", qty: { $lt: 30 } } )
 
