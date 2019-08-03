@@ -1,0 +1,41 @@
+db.examples.insertMany( [
+{ item: "c", qty: 100, size: { h: 28, w: 35.5, uom: "cm" }, status: "A" },
+{ item: "j", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+{ item: "mats", qty: 85, size: { h: 27.9, w: 35.5, uom: "cm" }, status: "A" },
+{ item: "mousepads", qty: 25, size: { h: 19, w: 22.85, uom: "cm" }, status: "P" },
+{ item: "notebooks", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "P" },
+{ item: "papers", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+{ item: "pl", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+{ item: "po", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" },
+{ item: "sk", qty: 80, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+{ item: "sketches", qty: 95, size: { h: 22.85, w: 30.5, uom: "cm" }, status: "A" }
+] );
+
+--Update a Single MongoDB Document
+
+db.examples.updateOne(
+{ item: "papers" },
+{
+$set: { "size.uom": "cm", status: "P" },
+$currentDate: { lastModified: true }
+}
+)
+
+--Update a Multiple MongoDB Documents?
+
+db.examples.updateMany(
+{ "qty": { $lt: 50 } },
+{
+$set: { "size.uom": "in", status: "P" },
+$currentDate: { lastModified: true }
+}
+)
+
+-- deleting MongoDB documents
+db.examples.deleteMany({})
+
+--delete only one MongoDB document that matches a condition?
+db.examples.deleteOne( { status: "D" } )
+
+--delete all documents that match a condition
+db.examples.deleteMany({ status : "A" })
